@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encryption Tool</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Encryption Tool</h1>
+        <textarea id="inputText" placeholder="Enter text here..."></textarea>
+        <input type="text" id="key" placeholder="Enter encryption key...">
+        <div class="buttons">
+            <button onclick="encryptText()">Encrypt</button>
+            <button onclick="decryptText()">Decrypt</button>
+            <button onclick="clearFields()">Clear</button>
+            <button onclick="copyText()">Copy</button>
+        </div>
+        <textarea id="outputText" placeholder="Encrypted/Decrypted text will appear here..." readonly></textarea>
+        <h2>Don't know how to use watch <a href="#">video!</a></h2>
+    </div>
+    <script>
+        function encryptText() {
+    const inputText = document.getElementById('inputText').value;
+    const key = document.getElementById('key').value;
+    const outputText = document.getElementById('outputText');
+
+    if (!inputText || !key) {
+        outputText.value = 'Please enter both text and key for encryption.';
+        return;
+    }
+
+    let encrypted = '';
+    for (let i = 0; i < inputText.length; i++) {
+        const charCode = inputText.charCodeAt(i) ^ key.charCodeAt(i % key.length);
+        encrypted += String.fromCharCode(charCode);
+    }
+
+    outputText.value = btoa(encrypted); // Encode the encrypted string to base64
+}
+
+function decryptText() {
+    const inputText = document.getElementById('inputText').value;
+    const key = document.getElementById('key').value;
+    const outputText = document.getElementById('outputText');
+
+    if (!inputText || !key) {
+        outputText.value = 'Please enter both encrypted text and key for decryption.';
+        return;
+    }
+
+    let decoded = atob(inputText); // Decode the base64 string
+    let decrypted = '';
+    for (let i = 0; i < decoded.length; i++) {
+        const charCode = decoded.charCodeAt(i) ^ key.charCodeAt(i % key.length);
+        decrypted += String.fromCharCode(charCode);
+    }
+
+    outputText.value = decrypted;
+}
+
+function clearFields() {
+    document.getElementById('inputText').value = '';
+    document.getElementById('key').value = '';
+    document.getElementById('outputText').value = '';
+}
+
+function copyText() {
+    const outputText = document.getElementById('outputText');
+    outputText.select();
+    outputText.setSelectionRange(0, 99999); // For mobile devices
+    document.execCommand('copy');
+    alert('Text copied to clipboard!');
+}
+
+    </script>
+</body>
+</html>
