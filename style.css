@@ -81,12 +81,12 @@ a {
 
     button {
         flex: 0 1 48%; /* Ensure two buttons side by side on mobile */
-        padding: 6px; /* Slightly reduce padding on mobile */
+        padding: 10px; /* Slightly reduce padding on mobile */
         font-size: 10px; /* Reduce font size on mobile */
     }
 }
 p{
-    margin-bottom: -15px;
+    /* margin-bottom: -15px; */
     color: #ddd;
     font-weight: bold;   
 }
