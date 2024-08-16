@@ -15,19 +15,20 @@ body {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     text-align: center;
-    width: 80%;
-    max-width: 500px;
+    width: 90%;
+    max-width: 400px;
 }
 
 textarea, input {
-    width: 90%;
-    padding: 10px;
+    width: 100%;
+    padding: 8px;
     margin: 10px 0;
     border: none;
     border-radius: 5px;
     background-color: #333;
     color: #f2f2f2;
     resize: none;
+    box-sizing: border-box;
 }
 
 textarea::placeholder, input::placeholder {
@@ -35,27 +36,61 @@ textarea::placeholder, input::placeholder {
 }
 
 .buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px; /* Space between buttons */
     margin: 20px 0;
 }
 
 button {
-    padding: 10px 20px;
-    margin: 5px;
+    flex: 0 1 48%; /* Buttons take up 48% width of the container */
+    padding: 10px;
+    margin: 0;
     border: none;
     border-radius: 5px;
     background-color: #3a3a3a;
     color: #f2f2f2;
     cursor: pointer;
+    font-size: 12px;
+    text-align: center;
 }
 
 button:hover {
     background-color: #4a4a4a;
 }
-h2{
+
+h2 {
     font-size: 14px;
-    
 }
-a{
+
+a {
     color: red;
     text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 15px;
+        width: 90%;
+    }
+
+    .buttons {
+        gap: 5px; /* Reduce space between buttons on mobile */
+    }
+
+    button {
+        flex: 0 1 48%; /* Ensure two buttons side by side on mobile */
+        padding: 6px; /* Slightly reduce padding on mobile */
+        font-size: 10px; /* Reduce font size on mobile */
+    }
+}
+p{
+    margin-bottom: -15px;
+    color: #ddd;
+    font-weight: bold;   
+}
+a{
+    text-decoration: none;
+    color: #dd7c7c;
 }
